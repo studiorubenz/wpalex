@@ -1,0 +1,1 @@
+/Users/johannes/Sites/alex-wp/public/wp-content/plugins/query-monitor/wp-content/db.php
