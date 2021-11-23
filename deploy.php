@@ -4,26 +4,36 @@ namespace Deployer;
 require 'recipe/common.php';
 
 // Project name
-set('application', 'my_project');
+set('application', 'wpalex');
 
 // Project repository
 set('repository', 'https://github.com/studiorubenz/wpalex');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', true);
+
+
 
 // Shared files/dirs between deploys 
-set('shared_files', []);
-set('shared_dirs', []);
+set('shared_files', ['public/wp-config.php']);
+set('shared_dirs', ['public/wp-content/uploads']);
 
 // Writable dirs by web server 
-set('writable_dirs', []);
-
+set('writable_mode', 'chown');
+set('writable_dirs', ['public/wp-content/uploads']);
+set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('project.com')
-    ->set('deploy_path', '~/{{application}}');    
+host('vm-magenta.multimediatechnology.at')
+    ->user('admin')
+        ->port(5412)
+        ->set('deploy_path', '/home/admin/app');
+
+
+
+// Composer
+set('composer_action', false);
     
 
 // Tasks
@@ -37,7 +47,6 @@ task('deploy', [
     'deploy:update_code',
     'deploy:shared',
     'deploy:writable',
-    'deploy:vendors',
     'deploy:clear_paths',
     'deploy:symlink',
     'deploy:unlock',
