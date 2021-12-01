@@ -14,13 +14,13 @@ set('git_tty', true);
 
 
 
-// Shared files/dirs between deploys 
+// Shared files/dirs between deploys
 set('shared_files', ['public/wp-config.php']);
 set('shared_dirs', ['public/wp-content/uploads']);
 
 // Writable dirs by web server 
-set('writable_mode', 'chown');
-set('writable_dirs', ['public/wp-content/uploads']);
+// set('writable_mode', 'chown');
+// set('writable_dirs', ['public/wp-content/uploads']);
 set('allow_anonymous_stats', false);
 
 // Hosts
@@ -28,13 +28,13 @@ set('allow_anonymous_stats', false);
 host('vm-magenta.multimediatechnology.at')
     ->user('admin')
         ->port(5412)
-        ->set('deploy_path', '/home/admin/app');
+        ->set('deploy_path', '/home/admin/alex');
 
 
 
 // Composer
 set('composer_action', false);
-    
+
 
 // Tasks
 
